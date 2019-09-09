@@ -66,27 +66,31 @@ void Raster::WriteToPPM(){
 }
 
 void Raster::DrawLine_DDA(float x1, float y1, float x2, float y2, Color fillColor){
-    if (x1 == x2){
+    if (x1 == x2){ //vertical
         swap(x1, y1, x2, y2);
+        x1 = round(x1);
+        y1 = round(y1);
         for (int y = y1; y <= y2; y++){
-            SetColorPixel((height - 1 - round(y)), x1, fillColor);
+            SetColorPixel(x1, round(y), fillColor);
         }
     }
-    else {
+    else { //not vertical
         swap(x1, y1, x2, y2);
-        float m = ((y2 - y1)/(x2 - x1));
-        if (abs(m) <= 1){
-            float y = y1;
+        float m = ((y2 - y1)/(x2 - x1)); //slope
+        if (abs(m) <= 1){ //slope is less than 1
+            x1 = round(x1);
+            float y = round(y1);
             for (int x = x1; x <= x2; x++){
-                SetColorPixel((height - 1 - round(y)), x, fillColor);
+                SetColorPixel(x, round(y), fillColor);
                 y += m;
             }
         }
         else {
             m = 1/m;
-            float x = x2;
+            y2 = round(y2);
+            float x = round(x2);
             for (int y = y2; y >= y1; y--){
-                SetColorPixel((height - 1) - y, round(x), fillColor);
+                SetColorPixel(round(x), y, fillColor);
                 x += m;
             }
         }
