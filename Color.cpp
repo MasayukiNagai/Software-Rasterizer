@@ -3,12 +3,12 @@
 #include <string>
 using namespace std;
 
-#define Red Color::Color(1.0, 0.0, 0.0, 1.0)
-#define Green Color::Color(0.0, 1.0, 0.0, 1.0)
-#define Blue Color::Color(0.0, 0.0, 1.0, 1.0)
-#define Black Color::Color(1.0, 1.0, 1.0, 1.0)
-#define White Color::Color(0.0, 0.0, 0.0, 1.0)
-#define Clear Color::Color(1.0, 1.0, 1.0, 0.0)
+#define Red Color(1.0, 0.0, 0.0, 1.0)
+#define Green Color(0.0, 1.0, 0.0, 1.0)
+#define Blue Color(0.0, 0.0, 1.0, 1.0)
+#define Black Color(1.0, 1.0, 1.0, 1.0)
+#define White Color(0.0, 0.0, 0.0, 1.0)
+#define Clear Color(1.0, 1.0, 1.0, 0.0)
 
 
 
@@ -98,7 +98,7 @@ int main(){
     cout << "Color c3 = c1 + c2" << endl;
     cout << "Color c3: Red " << c3.red << ", Green" << c3.green << ", Blue" << c3.blue << ", Alpha" << c3.alpha << endl;
 
-    cout << "----------  Overload the addition ----------" << endl;
+    cout << "----------  Overload the subtraction ----------" << endl;
     Color c4 = c2 - c1;
     cout << "Color c4 = c2 - c1" << endl;
     cout << "Color c4: Red " << c4.red << ", Green" << c4.green << ", Blue" << c4.blue << ", Alpha" << c4.alpha << endl;
@@ -110,6 +110,6 @@ int main(){
 
     cout << "----------  Preprocessor Directives ----------" << endl;
     Color c6 = Red;
-    cout << "Color C6 is red: Red" << c6.red << ", Green" << c6.green << ", Blue" << c6.blue << ", Alpha" << c6.alpha << endl;
+    cout << "Color c6: Red " << c6.red << ", Green" << c6.green << ", Blue" << c6.blue << ", Alpha" << c6.alpha << endl;
 
 } 

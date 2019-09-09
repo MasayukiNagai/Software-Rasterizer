@@ -17,6 +17,8 @@ struct Color {
     Color operator+(const Color & other);
     Color operator-(const Color & other);
     Color operator*(float p);
+
+    
 };
 
 #endif
