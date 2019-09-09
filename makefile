@@ -1,4 +1,4 @@
-OBJ=Color.o Raster.o
+OBJ=Color.o Raster.o main.o
 DEPS=Color.h Raster.h
 CC=g++
 CFLAGS=-I.

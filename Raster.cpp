@@ -2,15 +2,13 @@
 #include <iostream>
 using namespace std;
 
-Raster::Raster(){  
-  width = 0;
-  height = 0;
-  pixels = NULL;
+Raster::Raster()
+  : width(0), height(0), pixels(NULL){  
+
 }
 
-Raster::Raster(int pWidth, int pHeight, Color pFillColor){
-  width = pWidth;
-  height = pHeight;
+Raster::Raster(int pWidth, int pHeight, Color pFillColor)
+  : width(pWidth), height(pHeight){
   int size = width * height;
   pixels = new (nothrow) Color[size];
   if (pixels == nullptr){
@@ -44,13 +42,14 @@ void Raster::SetColorPixel(int x, int y, Color pFillColor){
     pixels[width * (height-y-1) + x] = pFillColor;
 }
 
-void Raster::Clear(Color pFillColor){
+void Raster::clear(Color pFillColor){
     for (int i = 0; i < width * height; i++){
         pixels[i] = pFillColor;
     }
 }
 
 void Raster::WriteToPPM(){
+
 }
 
 void Raster::DrawLine_DDA(float x1, float y1, float x2, float y2, Color fillColor){
@@ -58,5 +57,5 @@ void Raster::DrawLine_DDA(float x1, float y1, float x2, float y2, Color fillColo
 }
 
 void swap(float x1, float y1, float x2, float y2){
-    
+
 }

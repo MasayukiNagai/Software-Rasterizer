@@ -32,5 +32,7 @@ int main() {
     Color c6 = Red;
     cout << "Color c6: Red " << c6.red << ", Green" << c6.green << ", Blue" << c6.blue << ", Alpha" << c6.alpha << endl;
 
+    cout << "----------  Preprocessor Directives ----------" << endl;
+
 
 }

@@ -17,7 +17,7 @@ class Raster {
         int GetHeight();
         Color GetColorPixel(int x, int y);
         void SetColorPixel(int x, int y, Color pFillColor);
-        void Clear(Color pFillColor);
+        void clear(Color pFillColor);
         void WriteToPPM();
         void DrawLine_DDA(float x1, float y1, float x2, float y2, Color fillColor);
         void swap(float x1, float y1, float x2, float y2);

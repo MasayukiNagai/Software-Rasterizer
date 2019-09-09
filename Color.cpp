@@ -3,27 +3,16 @@
 #include <string>
 using namespace std;
 
-#define Red Color(1.0, 0.0, 0.0, 1.0)
-#define Green Color(0.0, 1.0, 0.0, 1.0)
-#define Blue Color(0.0, 0.0, 1.0, 1.0)
-#define Black Color(1.0, 1.0, 1.0, 1.0)
-#define White Color(0.0, 0.0, 0.0, 1.0)
-#define Clear Color(1.0, 1.0, 1.0, 0.0)
-
-
-
-Color::Color(){
-    red = 1.0;
-    green = 1.0;
-    blue = 1.0;
-    alpha = 1.0;
+Color::Color()
+  : red(1.0), green(1.0), blue(1.0), alpha(1.0){
 }
 
-Color::Color(float pRed, float pGreen, float pBlue, float pAlpha){
-    red = pRed;
-    green = pGreen;
-    blue = pBlue;
-    alpha = pAlpha;
+Color::Color(float pRed, float pGreen, float pBlue, float pAlpha)
+  : red(pRed), green(pGreen), blue(pBlue), alpha(pAlpha){
+    // red = pRed;
+    // green = pGreen;
+    // blue = pBlue;
+    // alpha = pAlpha;
     Clamp();
 }
 
