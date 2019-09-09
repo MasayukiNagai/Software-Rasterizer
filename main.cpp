@@ -34,7 +34,9 @@ int main() {
 
     Raster test(WIDTH, HEIGHT, c1);
     // test.GetColorPixel(3,0).print();
-    test.SetColorPixel(3,0, c2);
-    test.DrawLine_DDA(3.0, 1.0, 5.0, 19.0, c2);
+    test.SetColorPixel(0,10, White);
+    test.DrawLine_DDA(3.0, 1.0, 5.0, 15.0, Blue);
+    test.DrawLine_DDA(18.0, 6.0, 4.0, 2.0, Green);
+    test.DrawLine_DDA(0.0, 3.0, 0.0, 18.0, Black);
     test.WriteToPPM();
 }
