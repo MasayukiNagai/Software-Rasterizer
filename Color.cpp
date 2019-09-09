@@ -57,7 +57,7 @@ void Color::Clamp(){
 Color Color::operator+(const Color & other){
     Color new_color;
     new_color.red = this->red + other.red;
-    new_color.green = this->green + other.blue;
+    new_color.green = this->green + other.green;
     new_color.blue = this->blue + other.blue;
     new_color.alpha = this->alpha + other.alpha;
 
@@ -90,7 +90,7 @@ Color Color::operator*(float p){
 int main(){
 
     cout << "----------  Overload the addition ----------" << endl;
-    Color c1(1,0, 0.25, 0.25, 0.50);
+    Color c1(1.0, 0.25, 0.25, 0.50);
     Color c2(0.0, 0.5, 1.0, 0.60);
     Color c3 = c1 + c2;
     cout << "Color c1: Red " << c1.red << ", Green" << c1.green << ", Blue" << c1.blue << ", Alpha" << c1.alpha << endl;
@@ -104,8 +104,12 @@ int main(){
     cout << "Color c4: Red " << c4.red << ", Green" << c4.green << ", Blue" << c4.blue << ", Alpha" << c4.alpha << endl;
 
     cout << "----------  Overload the multiplication ----------" << endl;
-    Color c5 = c1 * 1.5
+    Color c5 = c1 * 1.5;
     cout << "Color c5 = c1 * 1.5" << endl;
     cout << "Color c5: Red " << c5.red << ", Green" << c5.green << ", Blue" << c5.blue << ", Alpha" << c5.alpha << endl;
+
+    cout << "----------  Preprocessor Directives ----------" << endl;
+    Color c6 = Red;
+    cout << "Color C6 is red: Red" << c6.red << ", Green" << c6.green << ", Blue" << c6.blue << ", Alpha" << c6.alpha << endl;
 
 } 
