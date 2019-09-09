@@ -3,6 +3,7 @@
 
 #include <iostream>
 
+
 #define Red Color(1.0, 0.0, 0.0, 1.0)
 #define Green Color(0.0, 1.0, 0.0, 1.0)
 #define Blue Color(0.0, 0.0, 1.0, 1.0)
@@ -20,8 +21,8 @@ struct Color {
 
     Color();
     Color(float pRed, float pGreen, float pBlue, float pAlpha);
-    void Clamp();
 
+    void Clamp();
     Color operator+(const Color & other);
     Color operator-(const Color & other);
     Color operator*(float p);

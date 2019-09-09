@@ -1,5 +1,7 @@
 #include "Raster.h"
 #include <iostream>
+#include <fstream>
+#include <cmath>
 using namespace std;
 
 Raster::Raster()
@@ -49,13 +51,64 @@ void Raster::clear(Color pFillColor){
 }
 
 void Raster::WriteToPPM(){
-
+    ofstream img;
+    img.open("imag.ppm");
+    img << "P3" << endl;
+    img << width << " " << height << endl;
+    img << "255" << endl;
+    for (int i = 0; i < width * height; i++){
+        int r = pixels[i].red * 255;
+        int g = pixels[i].green * 255;
+        int b = pixels[i].blue * 255;
+        img << r << " " << g << " " << b << endl;
+    }
+    img.close();
 }
 
 void Raster::DrawLine_DDA(float x1, float y1, float x2, float y2, Color fillColor){
-
+    if (x1 == x2){
+        swap(x1, y1, x2, y2);
+        for (int y = y1; y <= y2; y++){
+            SetColorPixel((height - 1 - round(y)), x1, fillColor);
+        }
+    }
+    else {
+        swap(x1, y1, x2, y2);
+        float m = ((y2 - y1)/(x2 - x1));
+        if (abs(m) <= 1){
+            float y = y1;
+            for (int x = x1; x <= x2; x++){
+                SetColorPixel((height - 1 - round(y)), x, fillColor);
+                y += m;
+            }
+        }
+        else {
+            m = 1/m;
+            float x = x2;
+            for (int y = y2; y >= y1; y--){
+                SetColorPixel((height - 1) - y, round(x), fillColor);
+                x += m;
+            }
+        }
+    }
 }
 
-void swap(float x1, float y1, float x2, float y2){
-
+void Raster::swap(float& x1, float& y1, float& x2, float& y2){
+    if (x1 > x2){
+        float temp_x, temp_y;
+        temp_x = x1;
+        x1 = x2;
+        x2 = temp_x;
+        temp_y = y1;
+        y1 = y2;
+        y2 = temp_y;
+    }
+    else if (x1 == x2) {
+        if (y1 > y2){
+        float temp_y;
+        temp_y = y1;
+        y1 = y2;
+        y2 = temp_y;
+        }
+    }
 }
