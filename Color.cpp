@@ -9,10 +9,6 @@ Color::Color()
 
 Color::Color(float pRed, float pGreen, float pBlue, float pAlpha)
   : red(pRed), green(pGreen), blue(pBlue), alpha(pAlpha){
-    // red = pRed;
-    // green = pGreen;
-    // blue = pBlue;
-    // alpha = pAlpha;
     Clamp();
 }
 

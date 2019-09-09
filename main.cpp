@@ -2,8 +2,8 @@
 #include "Color.h"
 #include "Raster.h"
 
-#define WIDTH 20
-#define HEIGHT 20
+#define WIDTH 100
+#define HEIGHT 100
 
 using namespace std;
 
@@ -32,11 +32,12 @@ int main() {
     // Color c6 = Red;
     // cout << "Color c6: Red " << c6.red << ", Green" << c6.green << ", Blue" << c6.blue << ", Alpha" << c6.alpha << endl;
 
-    Raster test(WIDTH, HEIGHT, c1);
-    // test.GetColorPixel(3,0).print();
-    test.SetColorPixel(10,0, White);
-    test.DrawLine_DDA(3.0, 1.0, 5.0, 15.0, Blue);
-    test.DrawLine_DDA(18.0, 6.0, 4.0, 2.0, Green);
-    test.DrawLine_DDA(0.0, 18.0, 0.0, 3.0, Black);
+    Raster test(WIDTH, HEIGHT, Green);
+    test.SetColorPixel(50,0, White);
+    test.DrawLine_DDA(3.0, 1.0, 20.0, 80.0, Blue);
+    test.DrawLine_DDA(3.0, 20.0, 80.0, 40.0, Red);
+    test.DrawLine_DDA(10.0, 70.0, 10.0, 3.0, Black);
+    // test.clear(Green);
+    
     test.WriteToPPM();
 }

@@ -6,7 +6,6 @@ using namespace std;
 
 Raster::Raster()
   : width(0), height(0), pixels(NULL){  
-
 }
 
 Raster::Raster(int pWidth, int pHeight, Color pFillColor)
@@ -52,7 +51,7 @@ void Raster::clear(Color pFillColor){
 
 void Raster::WriteToPPM(){
     ofstream img;
-    img.open("imag.ppm");
+    img.open("FRAME_BUFFER.ppm");
     img << "P3" << endl;
     img << width << " " << height << endl;
     img << "255" << endl;
@@ -85,7 +84,7 @@ void Raster::DrawLine_DDA(float x1, float y1, float x2, float y2, Color fillColo
                 y += m;
             }
         }
-        else {
+        else { //slope is more than 1
             m = 1/m;
             y2 = round(y2);
             float x = round(x2);
@@ -107,7 +106,7 @@ void Raster::swap(float& x1, float& y1, float& x2, float& y2){
         y1 = y2;
         y2 = temp_y;
     }
-    else if (x1 == x2) {
+    else if (x1 == x2) { //vertical
         if (y1 > y2){
         float temp_y;
         temp_y = y1;

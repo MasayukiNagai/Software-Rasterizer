@@ -9,7 +9,7 @@
 #define Blue Color(0.0, 0.0, 1.0, 1.0)
 #define Black Color(0.0, 0.0, 0.0, 1.0)
 #define White Color(1.0, 1.0, 1.0, 1.0)
-#define Clear Color(1.0, 1.0, 1.0, 0.0)
+#define Clear Color(0.0, 0.0, 0.0, 0.0)
 
 
 struct Color {
