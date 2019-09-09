@@ -53,3 +53,8 @@ void Raster::Clear(Color pFillColor){
 void Raster::WriteToPPM(){
 }
 
+void Raster::DrawLine_DDA(float x1, float y1, float x2, float y2, Color fillColor){
+    
+}
+
+
