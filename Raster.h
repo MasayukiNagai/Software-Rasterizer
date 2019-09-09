@@ -20,6 +20,7 @@ class Raster {
         void Clear(Color pFillColor);
         void WriteToPPM();
         void DrawLine_DDA(float x1, float y1, float x2, float y2, Color fillColor);
+        void swap(float x1, float y1, float x2, float y2);
     
     private:
         int height;
