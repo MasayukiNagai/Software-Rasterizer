@@ -86,11 +86,12 @@ void Raster::DrawLine_DDA(float x1, float y1, float x2, float y2, Color fillColo
         }
         else { //slope is more than 1
             m = 1/m;
+            swap(y1, x1, y2, x2);
             y2 = round(y2);
             float x = round(x2);
             for (int y = y2; y >= y1; y--){
                 SetColorPixel(round(x), y, fillColor);
-                x += m;
+                x -= m;
             }
         }
     }
