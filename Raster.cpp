@@ -25,6 +25,7 @@ Raster::Raster(int pWidth, int pHeight, Color pFillColor)
 
 Raster::~Raster(){
     delete [] pixels;
+    pixels = NULL;
 }
 
 int Raster::GetWidth(){

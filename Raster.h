@@ -4,7 +4,6 @@
 #include "Color.h"
 #include <iostream>
 
-using namespace std;
 class Raster {
     public:
         Raster();
