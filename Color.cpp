@@ -53,7 +53,7 @@ Color Color::operator+(const Color & other){
 Color Color::operator-(const Color & other){
     Color new_color;
     new_color.red = this->red - other.red;
-    new_color.green = this->green - other.blue;
+    new_color.green = this->green - other.green;
     new_color.blue = this->blue - other.blue;
     new_color.alpha = this->alpha - other.alpha;
 

@@ -39,7 +39,6 @@ int main() {
     test.DrawLine_DDA(3.0, 20.0, 80.0, 40.0, Red);
     test.DrawLine_DDA(10.0, 70.0, 10.0, 3.0, Black);
     test.DrawLine_DDA(10.0, 10.0, 80.0, 10.0, White);
-    // test.clear(Green);
     
     test.WriteToPPM();
 }
