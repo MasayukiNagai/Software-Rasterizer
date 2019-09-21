@@ -1,5 +1,5 @@
-OBJ=Color.o Raster.o main.o
-DEPS=Color.h Raster.h
+OBJ=Color.o Raster.o Vector2.o main.o
+DEPS=Color.h Raster.h Vector2.h
 CC=g++
 CFLAGS=-I.
 LIBS=

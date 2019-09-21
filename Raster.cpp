@@ -107,26 +107,6 @@ void Raster::DrawLine_DDA(float x1, float y1, float x2, float y2, Color fillColo
     }
 }
 
-// void Raster::swap(float& x1, float& y1, float& x2, float& y2){
-//     if (x1 > x2){
-//         float temp_x, temp_y;
-//         temp_x = x1;
-//         x1 = x2;
-//         x2 = temp_x;
-//         temp_y = y1;
-//         y1 = y2;
-//         y2 = temp_y;
-//     }
-//     else if (x1 == x2) { //vertical
-//         if (y1 > y2){
-//         float temp_y;
-//         temp_y = y1;
-//         y1 = y2;
-//         y2 = temp_y;
-//         }
-//     }
-// }
-
 void Raster::swap(float& x1, float& y1, float& x2, float& y2){
     float temp = x1;
     x1 = x2;

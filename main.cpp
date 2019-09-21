@@ -1,6 +1,7 @@
 #include <iostream>
 #include "Color.h"
 #include "Raster.h"
+#include "Vector2.h"
 
 #define WIDTH 100
 #define HEIGHT 100
@@ -32,13 +33,44 @@ int main() {
     // Color c6 = Red;
     // cout << "Color c6: Red " << c6.red << ", Green" << c6.green << ", Blue" << c6.blue << ", Alpha" << c6.alpha << endl;
 
-    Raster test(WIDTH, HEIGHT, Green);
-    test.SetColorPixel(50,0, White);
-    test.DrawLine_DDA(70.0, 20.0, 45.0, 80.0, Blue);
-    test.DrawLine_DDA(20.0, 20.0, 45.0, 80.0, Clear);
-    test.DrawLine_DDA(3.0, 20.0, 80.0, 40.0, Red);
-    test.DrawLine_DDA(10.0, 70.0, 10.0, 3.0, Black);
-    test.DrawLine_DDA(10.0, 10.0, 80.0, 10.0, White);
-    
-    test.WriteToPPM();
+    // Raster test(WIDTH, HEIGHT, Green);
+    // test.SetColorPixel(50,0, White);
+    // test.DrawLine_DDA(70.0, 20.0, 45.0, 80.0, Blue);
+    // test.DrawLine_DDA(20.0, 20.0, 45.0, 80.0, Clear);
+    // test.DrawLine_DDA(3.0, 20.0, 80.0, 40.0, Red);
+    // test.DrawLine_DDA(10.0, 70.0, 10.0, 3.0, Black);
+    // test.DrawLine_DDA(10.0, 10.0, 80.0, 10.0, White);
+    // test.WriteToPPM();
+
+    Vector2 v1(2.1, 3.4);
+    Vector2 v2(-5.6, 2.5);
+
+    cout << "----------  Overload the multiplication ----------" << endl;
+    Vector2 v3 = v1 * 2;
+    cout << v3 << endl;
+
+    cout << "----------  Overload the addition ----------" << endl;
+    Vector2 v4 = v1 + v2;
+    cout << v4 << endl;
+
+    cout << "----------  Overload the subtraction ----------" << endl;
+    Vector2 v5 = v1 - v2;
+    cout << v5 << endl; 
+
+    cout << "----------  Magnitude ----------" << endl;
+    cout << v1.Magnitude() << endl;
+
+    cout << "----------  Dot ----------" << endl;
+    cout << v1.Dot(v2) << endl;
+
+    cout << "----------  Normalize ----------" << endl;
+    cout << v1.Normalize() << endl;
+
+    cout << "----------  Perpendicular ----------" << endl;
+    cout << v1.Perpendicular() << endl;
+
+    cout << "----------  Determinant ----------" << endl;
+    cout << Determinant(v1, v2) << endl;
+
+
 }
