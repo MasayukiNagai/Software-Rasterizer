@@ -42,35 +42,43 @@ int main() {
     // test.DrawLine_DDA(10.0, 10.0, 80.0, 10.0, White);
     // test.WriteToPPM();
 
-    Vector2 v1(2.1, 3.4);
-    Vector2 v2(-5.6, 2.5);
+    // Vector2 v1(2.1, 3.4);
+    // Vector2 v2(-5.6, 2.5);
 
-    cout << "----------  Overload the multiplication ----------" << endl;
-    Vector2 v3 = v1 * 2;
-    cout << v3 << endl;
+    // cout << "----------  Overload the multiplication ----------" << endl;
+    // Vector2 v3 = v1 * 2;
+    // cout << v3 << endl;
 
-    cout << "----------  Overload the addition ----------" << endl;
-    Vector2 v4 = v1 + v2;
-    cout << v4 << endl;
+    // cout << "----------  Overload the addition ----------" << endl;
+    // Vector2 v4 = v1 + v2;
+    // cout << v4 << endl;
 
-    cout << "----------  Overload the subtraction ----------" << endl;
-    Vector2 v5 = v1 - v2;
-    cout << v5 << endl; 
+    // cout << "----------  Overload the subtraction ----------" << endl;
+    // Vector2 v5 = v1 - v2;
+    // cout << v5 << endl; 
 
-    cout << "----------  Magnitude ----------" << endl;
-    cout << v1.Magnitude() << endl;
+    // cout << "----------  Magnitude ----------" << endl;
+    // cout << v1.Magnitude() << endl;
 
-    cout << "----------  Dot ----------" << endl;
-    cout << v1.Dot(v2) << endl;
+    // cout << "----------  Dot ----------" << endl;
+    // cout << v1.Dot(v2) << endl;
 
-    cout << "----------  Normalize ----------" << endl;
-    cout << v1.Normalize() << endl;
+    // cout << "----------  Normalize ----------" << endl;
+    // cout << v1.Normalize() << endl;
 
-    cout << "----------  Perpendicular ----------" << endl;
-    cout << v1.Perpendicular() << endl;
+    // cout << "----------  Perpendicular ----------" << endl;
+    // cout << v1.Perpendicular() << endl;
 
-    cout << "----------  Determinant ----------" << endl;
-    cout << Determinant(v1, v2) << endl;
+    // cout << "----------  Determinant ----------" << endl;
+    // cout << Determinant(v1, v2) << endl;
 
+    Raster test(WIDTH, HEIGHT, White);
+    test.DrawLine_DDA_Interpolated(20.0, 20.0, 20.0, 80.0, Red, Blue);
+    test.DrawLine_DDA_Interpolated(20.0, 20.0, 80.0, 20.0, Red, Green);
+    test.DrawLine_DDA_Interpolated(30.0, 80.0, 80.0, 50.0, Blue, Green);
+    test.DrawLine_DDA_Interpolated(30.0, 20.0, 80.0, 50.0, Red, Green);
+    test.DrawLine_DDA_Interpolated(30.0, 80.0, 50.0, 20.0, Blue, Green);
+    test.DrawLine_DDA_Interpolated(30.0, 20.0, 50.0, 80.0, Red, Blue);
+    test.WriteToPPM();
 
 }
