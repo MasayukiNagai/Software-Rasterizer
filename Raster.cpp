@@ -193,3 +193,35 @@ void Raster::swapColor(float &x1, float &y1, float &x2, float &y2, Color &color1
     color1 = color2;
     color2 = tempColor;
 }
+
+void Raster::DrawTriangle2D_DotProduct(Triangle2D triangle){
+    float xmin = min(triangle.v0.x, min(triangle.v1.x, triangle.v2.x));
+    float xmax = max(triangle.v0.x, max(triangle.v1.x, triangle.v2.x));
+    float ymin = min(triangle.v0.y, min(triangle.v1.y, triangle.v2.y));
+    float ymax = max(triangle.v0.y, max(triangle.v1.y, triangle.v2.y));
+    for(int x = xmin; x < xmax; x++){
+        for(int y = ymin; y < ymax; y++){
+            Vector2 p(x, y);
+
+            Vector2 edge0 = triangle.v1 - triangle.v0;
+            Vector2 edgeP0 = edge0.Perpendicular();
+            Vector2 g0 = p - triangle.v0;
+            float result0 = edgeP0.Dot(g0);
+
+            Vector2 edge1 = triangle.v2 - triangle.v1;
+            Vector2 edgeP1 = edge1.Perpendicular();
+            Vector2 g1 = p - triangle.v1;
+            float result1 = edgeP1.Dot(g1);
+
+            Vector2 edge2 = triangle.v0 - triangle.v2;
+            Vector2 edgeP2 = edge2.Perpendicular();
+            Vector2 g2 = p - triangle.v2;
+            float result2 = edgeP2.Dot(g2);
+
+            if(result0 >= 0 && result1 >= 0 && result2 >= 0){
+                SetColorPixel(x, y, Red);
+            }            
+        }
+    }
+
+}

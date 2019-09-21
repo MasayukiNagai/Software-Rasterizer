@@ -2,6 +2,7 @@
 #include "Color.h"
 #include "Raster.h"
 #include "Vector2.h"
+#include "Triangle2D.h"
 
 #define WIDTH 100
 #define HEIGHT 100
@@ -72,13 +73,17 @@ int main() {
     // cout << "----------  Determinant ----------" << endl;
     // cout << Determinant(v1, v2) << endl;
 
-    Raster test(WIDTH, HEIGHT, White);
-    test.DrawLine_DDA_Interpolated(20.0, 20.0, 20.0, 80.0, Red, Blue);
-    test.DrawLine_DDA_Interpolated(20.0, 20.0, 80.0, 20.0, Red, Green);
-    test.DrawLine_DDA_Interpolated(30.0, 80.0, 80.0, 50.0, Blue, Green);
-    test.DrawLine_DDA_Interpolated(30.0, 20.0, 80.0, 50.0, Red, Green);
-    test.DrawLine_DDA_Interpolated(30.0, 80.0, 50.0, 20.0, Blue, Green);
-    test.DrawLine_DDA_Interpolated(30.0, 20.0, 50.0, 80.0, Red, Blue);
-    test.WriteToPPM();
+    // Raster test(WIDTH, HEIGHT, White);
+    // test.DrawLine_DDA_Interpolated(20.0, 20.0, 20.0, 80.0, Red, Blue);
+    // test.DrawLine_DDA_Interpolated(20.0, 20.0, 80.0, 20.0, Red, Green);
+    // test.DrawLine_DDA_Interpolated(30.0, 80.0, 80.0, 50.0, Blue, Green);
+    // test.DrawLine_DDA_Interpolated(30.0, 20.0, 80.0, 50.0, Red, Green);
+    // test.DrawLine_DDA_Interpolated(30.0, 80.0, 50.0, 20.0, Blue, Green);
+    // test.DrawLine_DDA_Interpolated(30.0, 20.0, 50.0, 80.0, Red, Blue);
+    // test.WriteToPPM();
 
+    Raster test(WIDTH, HEIGHT, White);
+    Triangle2D myTriangle(Vector2(2,15), Vector2(72,10), Vector2(45,80), Red, Green, Blue);
+    test.DrawTriangle2D_DotProduct(myTriangle);
+    test.WriteToPPM();
 }
