@@ -226,10 +226,17 @@ void Raster::DrawTriangle2D_DotProduct(Triangle2D triangle){
 }
 
 void Raster::DrawTriangle_Barycentric(Triangle2D triangle){
-    float xmin = min(triangle.v0.x, min(triangle.v1.x, triangle.v2.x));
-    float xmax = max(triangle.v0.x, max(triangle.v1.x, triangle.v2.x));
-    float ymin = min(triangle.v0.y, min(triangle.v1.y, triangle.v2.y));
-    float ymax = max(triangle.v0.y, max(triangle.v1.y, triangle.v2.y));
+    int xmin = round(min(triangle.v0.x, min(triangle.v1.x, triangle.v2.x)));
+    int xmax = round(max(triangle.v0.x, max(triangle.v1.x, triangle.v2.x)));
+    int ymin = round(min(triangle.v0.y, min(triangle.v1.y, triangle.v2.y)));
+    int ymax = round(max(triangle.v0.y, max(triangle.v1.y, triangle.v2.y)));
+    
+    int boundary = 0;
+    if (xmin < boundary) xmin = boundary;
+    if (xmax > width) xmax = width;
+    if (ymin < boundary) ymin = boundary;
+    if (ymax > height) ymax = height;
+    
     float lambda0;
     float lambda1;
     float lambda2;
@@ -242,7 +249,7 @@ void Raster::DrawTriangle_Barycentric(Triangle2D triangle){
                 fillColor = triangle.c0 * lambda0 + triangle.c1 * lambda1 + triangle.c2 * lambda2;
                 SetColorPixel(x, y, fillColor);
             }
-            cout << lambda0 << ", " << lambda1 << ", " << lambda2 << endl;
         }
     }
 }
+

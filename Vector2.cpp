@@ -62,5 +62,5 @@ ostream &operator<<(ostream &out, const Vector2 &p){
 }
 
 float Determinant(const Vector2 &p1, const Vector2 &p2){
-    return p1.x * p2.y - p1.y * p2.x;
+    return p1.x * p2.y - p1.y * p2.x; //I think this is the proper order of the calculation
 }
