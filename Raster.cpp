@@ -223,5 +223,26 @@ void Raster::DrawTriangle2D_DotProduct(Triangle2D triangle){
             }            
         }
     }
+}
 
+void Raster::DrawTriangle_Barycentric(Triangle2D triangle){
+    float xmin = min(triangle.v0.x, min(triangle.v1.x, triangle.v2.x));
+    float xmax = max(triangle.v0.x, max(triangle.v1.x, triangle.v2.x));
+    float ymin = min(triangle.v0.y, min(triangle.v1.y, triangle.v2.y));
+    float ymax = max(triangle.v0.y, max(triangle.v1.y, triangle.v2.y));
+    float lambda0;
+    float lambda1;
+    float lambda2;
+    Color fillColor;
+    for(int x = xmin; x < xmax; x++){
+        for(int y = ymin; y < ymax; y++){
+            Vector2 p(x, y);
+            triangle.CalculateBarycentricCoordinates(p, lambda0, lambda1, lambda2);
+            if(lambda0 >= 0 && lambda1 >= 0 && lambda2 >= 0){
+                fillColor = triangle.c0 * lambda0 + triangle.c1 * lambda1 + triangle.c2 * lambda2;
+                SetColorPixel(x, y, fillColor);
+            }
+            cout << lambda0 << ", " << lambda1 << ", " << lambda2 << endl;
+        }
+    }
 }

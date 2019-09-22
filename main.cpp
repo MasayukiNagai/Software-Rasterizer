@@ -84,6 +84,7 @@ int main() {
 
     Raster test(WIDTH, HEIGHT, White);
     Triangle2D myTriangle(Vector2(2,15), Vector2(72,10), Vector2(45,80), Red, Green, Blue);
-    test.DrawTriangle2D_DotProduct(myTriangle);
+    // test.DrawTriangle2D_DotProduct(myTriangle);
+    test.DrawTriangle_Barycentric(myTriangle);
     test.WriteToPPM();
 }
