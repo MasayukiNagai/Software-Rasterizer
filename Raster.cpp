@@ -195,10 +195,18 @@ void Raster::swapColor(float &x1, float &y1, float &x2, float &y2, Color &color1
 }
 
 void Raster::DrawTriangle2D_DotProduct(Triangle2D triangle){
+    swapVector2(triangle.v0, triangle.v1, triangle.v2);
     float xmin = min(triangle.v0.x, min(triangle.v1.x, triangle.v2.x));
     float xmax = max(triangle.v0.x, max(triangle.v1.x, triangle.v2.x));
     float ymin = min(triangle.v0.y, min(triangle.v1.y, triangle.v2.y));
     float ymax = max(triangle.v0.y, max(triangle.v1.y, triangle.v2.y));
+
+    int boundary = 0;
+    if (xmin < boundary) xmin = boundary;
+    if (xmax > width) xmax = width;
+    if (ymin < boundary) ymin = boundary;
+    if (ymax > height) ymax = height;
+    
     for(int x = xmin; x < xmax; x++){
         for(int y = ymin; y < ymax; y++){
             Vector2 p(x, y);
@@ -222,6 +230,18 @@ void Raster::DrawTriangle2D_DotProduct(Triangle2D triangle){
                 SetColorPixel(x, y, Red);
             }            
         }
+    }
+}
+
+void Raster::swapVector2(Vector2 &v0, Vector2 &v1, Vector2 &v2){
+    float centerX = (v0.x + v1.x + v2.x);
+    float centerY = (v0.y + v1.y + v2.y);
+    Vector2 center(centerX, centerY);
+    float det = Determinant(v0 - center, v1 - center);
+    if(det < 0){
+        Vector2 temp = v1;
+        v1 = v0;
+        v0 = temp;
     }
 }
 
