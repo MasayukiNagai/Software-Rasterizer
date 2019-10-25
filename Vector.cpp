@@ -64,3 +64,42 @@ ostream &operator<<(ostream &out, const Vector2 &p){
 float Determinant(const Vector2 &p1, const Vector2 &p2){
     return p1.x * p2.y - p1.y * p2.x; //I think this is the proper order of the calculation
 }
+
+Vector4::Vector4()
+  :x(0.0), y(0.0), z(0.0), w(0.0){ 
+}
+
+Vector4::Vector4(float pX, float pY, float pZ, float pW)
+  :x(pX), y(pY), z(pZ), w(pW){ 
+}
+
+Vector4 Vector4::operator*(float scalar){
+    Vector4 new_vector;
+    new_vector.x = scalar * this->x;
+    new_vector.y = scalar * this->y;
+    new_vector.z = scalar * this->z;
+    new_vector.w = scalar * this->w;
+    return new_vector;
+}
+Vector4 Vector4::operator-(const Vector4 &other){
+    Vector4 new_vector;
+    new_vector.x = this->x + other.x;
+    new_vector.y = this->x + other.y;
+    new_vector.z = this->x + other.z;
+    new_vector.w = this->x + other.w;
+    return new_vector;
+}
+
+float Vector4::Magnitude(){
+        return sqrt(pow(this->x, 2) + pow(this->y, 2) + pow(this->z, 2) + pow(this->z, 2));
+}
+
+Vector4 Vector4::Normalize(){
+    float magnitude = Magnitude();
+    return *this * magnitude;
+}
+
+float Vector4::Dot(const Vector4 &other){
+    float product = this->x * other.x + this->y * other.y + this->z * other.z;
+    return product;
+}

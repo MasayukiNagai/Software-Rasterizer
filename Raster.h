@@ -2,7 +2,7 @@
 #define __RASTER_H
 
 #include "Color.h"
-#include "Vector2.h"
+#include "Vector.h"
 #include "Triangle2D.h"
 #include <iostream>
 

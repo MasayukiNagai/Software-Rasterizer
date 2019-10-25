@@ -23,6 +23,23 @@ struct Vector2{
 
 };
 
+struct Vector4{
+    float x;
+    float y;
+    float z;
+    float w;
+
+    Vector4();
+    Vector4(float pX, float pY, float pZ, float pW);
+
+    Vector4 operator*(float scalar);
+    Vector4 operator-(const Vector4 &other);
+
+    float Magnitude();
+    Vector4 Normalize();
+    float Dot(const Vector4 &other);
+};
+
 std::ostream &operator<<(std::ostream &out, const Vector2 &p);
 float Determinant(const Vector2 &p1, const Vector2 &p2);
 

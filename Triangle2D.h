@@ -2,7 +2,7 @@
 #define __TRIANGLE2D_H
 
 #include <iostream>
-#include "Vector2.h"
+#include "Vector.h"
 #include "Color.h"
 
 struct Triangle2D{
