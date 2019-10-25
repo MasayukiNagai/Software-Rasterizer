@@ -1,7 +1,7 @@
 #include <iostream>
 #include "Color.h"
 #include "Raster.h"
-#include "Vector2.h"
+#include "Vector.h"
 #include "Triangle2D.h"
 
 #define WIDTH 100
@@ -36,7 +36,7 @@ int main() {
 
     // Raster test(WIDTH, HEIGHT, Green);
     // test.SetColorPixel(50,0, White);
-    // test.DrawLine_DDA(70.0, 20.0, 45.0, 80.0, Blue);
+    // test.DrawLine_DDA(20.0, 20.0, 20.0, 80.0, Blue);
     // test.DrawLine_DDA(20.0, 20.0, 45.0, 80.0, Clear);
     // test.DrawLine_DDA(3.0, 20.0, 80.0, 40.0, Red);
     // test.DrawLine_DDA(10.0, 70.0, 10.0, 3.0, Black);

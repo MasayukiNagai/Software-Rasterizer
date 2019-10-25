@@ -1,5 +1,5 @@
-#ifndef __VECTOR2_H
-#define __VECTOR2_H
+#ifndef __VECTOR_H
+#define __VECTOR_H
 
 #include <iostream>
 
