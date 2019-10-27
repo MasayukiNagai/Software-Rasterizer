@@ -23,6 +23,9 @@ struct Vector2{
 
 };
 
+std::ostream &operator<<(std::ostream &out, const Vector2 &p);
+float Determinant(const Vector2 &p1, const Vector2 &p2);
+
 struct Vector4{
     float x;
     float y;
@@ -39,8 +42,5 @@ struct Vector4{
     Vector4 Normalize();
     float Dot(const Vector4 &other);
 };
-
-std::ostream &operator<<(std::ostream &out, const Vector2 &p);
-float Determinant(const Vector2 &p1, const Vector2 &p2);
 
 #endif

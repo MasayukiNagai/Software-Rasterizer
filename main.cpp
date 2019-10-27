@@ -2,7 +2,7 @@
 #include "Color.h"
 #include "Raster.h"
 #include "Vector.h"
-#include "Triangle2D.h"
+#include "Triangle.h"
 #include "Matrix.h"
 
 #define WIDTH 100
