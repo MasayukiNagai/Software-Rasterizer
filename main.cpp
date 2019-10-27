@@ -3,6 +3,7 @@
 #include "Raster.h"
 #include "Vector.h"
 #include "Triangle2D.h"
+#include "Matrix.h"
 
 #define WIDTH 100
 #define HEIGHT 100
@@ -82,9 +83,28 @@ int main() {
     // test.DrawLine_DDA_Interpolated(30.0, 20.0, 50.0, 80.0, Red, Blue);
     // test.WriteToPPM();
 
-    Raster test(WIDTH, HEIGHT, White);
-    Triangle2D myTriangle(Vector2(-15,15), Vector2(45,80), Vector2(72,10), Red, Green, Blue);
+
+    // Checkpoint 2
+    // Raster test(WIDTH, HEIGHT, White);
+    // Triangle2D myTriangle(Vector2(-15,15), Vector2(45,80), Vector2(72,10), Red, Green, Blue);
     // test.DrawTriangle2D_DotProduct(myTriangle);
-    test.DrawTriangle_Barycentric(myTriangle);
-    test.WriteToPPM();
-}
+    // test.DrawTriangle_Barycentric(myTriangle);
+    // test.WriteToPPM();
+
+
+    // Checkpoint 3
+    Matrix4 I;
+    I.print();
+    Matrix4 A(1, 2, 3, 4,
+              5, 6, 7, 8,
+              9, 10, 11, 12,
+              13, 14, 15, 16); 
+    Matrix4 B(17, 18, 19, 20,
+              21, 22, 23, 24,
+              25, 26, 27, 28,
+              29, 30, 31, 32);
+    Matrix4 C = A * B;
+    A.print();
+    B.print();
+    C.print();
+}   
