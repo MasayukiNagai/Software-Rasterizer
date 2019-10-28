@@ -9,6 +9,15 @@ Triangle2D::Triangle2D(Vector2 pV0, Vector2 pV1, Vector2 pV2, Color pC0, Color p
   : v0(pV0), v1(pV1), v2(pV2), c0(pC0), c1(pC1), c2(pC2){
 }
 
+Triangle2D::Triangle2D(Triangle3D const &triangle3D){
+  v0 = Vector2(triangle3D.v0.x, triangle3D.v0.y);
+  v1 = Vector2(triangle3D.v1.x, triangle3D.v1.y);
+  v2 = Vector2(triangle3D.v2.x, triangle3D.v2.y);
+  c0 = triangle3D.c0;
+  c1 = triangle3D.c1;
+  c2 = triangle3D.c2;
+}
+
 void Triangle2D::CalculateBarycentricCoordinates(Vector2 P, float &lambda0, float &lambda1, float &lambda2){
     // float areaAll = abs(Determinant(this->v1 - this->v0, this->v2 - this->v0))/2;
     // float area0 = abs(Determinant(this->v1 - this->v2, P - this->v2))/2;
@@ -27,13 +36,8 @@ Triangle3D::Triangle3D(Vector4 pV0, Vector4 pV1, Vector4 pV2, Color pC0, Color p
   :v0(pV0), v1(pV1), v2(pV2), c0(pC0), c1(pC1), c2(pC2){
 }  
     
-Triangle3D Triangle3D::Transform(Matrix4 pM){
-  Triangle3D new_triangle;
-  new_triangle.v0 = pM * this->v0;
-  new_triangle.v1 = pM * this->v1;
-  new_triangle.v2 = pM * this->v2;
-  new_triangle.c0 = this->c0;
-  new_triangle.c1 = this->c1;
-  new_triangle.c2 = this->c2;
-  return new_triangle;
+void Triangle3D::Transform(Matrix4 pM){
+  this->v0 = pM * this->v0;
+  this->v1 = pM * this->v1;
+  this->v2 = pM * this->v2;
 }

@@ -245,7 +245,7 @@ void Raster::swapVector2(Vector2 &v0, Vector2 &v1, Vector2 &v2){
     }
 }
 
-void Raster::DrawTriangle_Barycentric(Triangle2D triangle){
+void Raster::DrawTriangle2D_Barycentric(Triangle2D triangle){
     int xmin = round(min(triangle.v0.x, min(triangle.v1.x, triangle.v2.x)));
     int xmax = round(max(triangle.v0.x, max(triangle.v1.x, triangle.v2.x)));
     int ymin = round(min(triangle.v0.y, min(triangle.v1.y, triangle.v2.y)));
@@ -264,6 +264,35 @@ void Raster::DrawTriangle_Barycentric(Triangle2D triangle){
     for(int x = xmin; x < xmax; x++){
         for(int y = ymin; y < ymax; y++){
             Vector2 p(x, y);
+            triangle.CalculateBarycentricCoordinates(p, lambda0, lambda1, lambda2);
+            if(lambda0 >= 0 && lambda1 >= 0 && lambda2 >= 0){
+                fillColor = triangle.c0 * lambda0 + triangle.c1 * lambda1 + triangle.c2 * lambda2;
+                SetColorPixel(x, y, fillColor);
+            }
+        }
+    }
+}
+
+void Raster::DrawTriangle3D_Barycentric(Triangle3D triangle3D){
+    Triangle2D triangle(triangle3D);
+    int xmin = round(min(triangle.v0.x, min(triangle.v1.x, triangle.v2.x)));
+    int xmax = round(max(triangle.v0.x, max(triangle.v1.x, triangle.v2.x)));
+    int ymin = round(min(triangle.v0.y, min(triangle.v1.y, triangle.v2.y)));
+    int ymax = round(max(triangle.v0.y, max(triangle.v1.y, triangle.v2.y)));
+    
+    int boundary = 0;
+    if (xmin < boundary) xmin = boundary;
+    if (xmax > width) xmax = width;
+    if (ymin < boundary) ymin = boundary;
+    if (ymax > height) ymax = height;
+    
+    float lambda0;
+    float lambda1;
+    float lambda2;
+    Color fillColor;
+    for(int x = xmin; x < xmax; x++){
+        for(int y = ymin; y < ymax; y++){
+            Vector2 p(x+0.5, y+0.5);
             triangle.CalculateBarycentricCoordinates(p, lambda0, lambda1, lambda2);
             if(lambda0 >= 0 && lambda1 >= 0 && lambda2 >= 0){
                 fillColor = triangle.c0 * lambda0 + triangle.c1 * lambda1 + triangle.c2 * lambda2;

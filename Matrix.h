@@ -13,16 +13,17 @@ struct Matrix4{
 
     Vector4 operator*(Vector4 other);
     Matrix4 operator*(Matrix4 other);
-    Matrix4 Translate3D(float tX, float tY, float tZ);
-    Matrix4 Scale3D(float sX, float sY, float sZ);
-    Matrix4 RotateX3D(float degrees);
-    Matrix4 RotateY3D(float degrees);
-    Matrix4 RotateZ3D(float degrees);
-    Matrix4 Rotate3D(float degreesX, float degreesY, float degreesZ);
-    Matrix4 Rotate3D(float degreesX, Vector4 vec);
+
     void print();
 };
 
+Matrix4 Translate3D(float tX, float tY, float tZ);
+Matrix4 Scale3D(float sX, float sY, float sZ);
+Matrix4 RotateX3D(float degrees);
+Matrix4 RotateY3D(float degrees);
+Matrix4 RotateZ3D(float degrees);
+Matrix4 Rotate3D(float degreesX, float degreesY, float degreesZ);
+Matrix4 Rotate3D(float degreesX, Vector4 vec);
 float convertToRadians(float degrees);
 
 #endif

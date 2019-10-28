@@ -103,3 +103,7 @@ float Vector4::Dot(const Vector4 &other){
     float product = this->x * other.x + this->y * other.y + this->z * other.z;
     return product;
 }
+
+void Vector4::print(){
+    cout << this->x << ", " << this->y << ", " << this->z << ", " << this->w <<endl;
+}

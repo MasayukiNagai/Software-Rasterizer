@@ -17,7 +17,7 @@ Vector4 Matrix4::operator*(Vector4 other){
     new_vector.x = m11 * other.x + m21 * other.y + m31 * other.z + m41 * other.w;
     new_vector.y = m12 * other.x + m22 * other.y + m32 * other.z + m42 * other.w;
     new_vector.z = m13 * other.x + m23 * other.y + m33 * other.z + m43 * other.w;
-    new_vector.x = m14 * other.x + m24 * other.y + m34 * other.z + m44 * other.w;
+    new_vector.w = m14 * other.x + m24 * other.y + m34 * other.z + m44 * other.w;
 
     return new_vector;
 }
@@ -51,60 +51,55 @@ void Matrix4::print(){
     cout << this->m14 << ", " << this->m24 << ", " << this->m34 << ", " << this->m44 << endl;
 }
 
-Matrix4 Matrix4::Translate3D(float tX, float tY, float tZ){
-    Matrix4 translate(1, 0, 1, tX,
+Matrix4 Translate3D(float tX, float tY, float tZ){
+    Matrix4 translate(1, 0, 0, tX,
                       0, 1, 0, tY,
                       0, 0, 1, tZ,
                       0, 0, 0, 1);
-    Matrix4 new_matrix = translate * (*this);
-    return new_matrix;
+    return translate;
 }
 
-Matrix4 Matrix4::Scale3D(float sX, float sY, float sZ){
+Matrix4 Scale3D(float sX, float sY, float sZ){
     Matrix4 scale(sX, 0, 0, 0,
                   0, sY, 0, 0,
                   0, 0, sZ, 0,
                   0, 0, 0, 1);
-    Matrix4 new_matrix = scale * (*this);
-    return new_matrix;
+    return scale;
 }
 
-Matrix4 Matrix4::RotateX3D(float degrees){
+Matrix4 RotateX3D(float degrees){
     float a = convertToRadians(degrees);
     Matrix4 rotateX(1, 0, 0, 0,
                     0, cos(a), sin(a), 0,
                     0, -sin(a), cos(a), 0,
                     0, 0, 0, 1);
-    Matrix4 new_matrix = rotateX * (*this);
-    return new_matrix;
+    return rotateX;
 }
 
-Matrix4 Matrix4::RotateY3D(float degrees){
+Matrix4 RotateY3D(float degrees){
     float a = convertToRadians(degrees);
-    Matrix4 rotateX(cos(a), 0, -sin(a), 0,
+    Matrix4 rotateY(cos(a), 0, -sin(a), 0,
                     0, 1, 0, 0,
                     sin(a), 0, cos(a), 0,
                     0, 0, 0, 1);
-    Matrix4 new_matrix = rotateX * (*this);
-    return new_matrix;
+    return  rotateY;
 }
 
-Matrix4 Matrix4::RotateZ3D(float degrees){
+Matrix4 RotateZ3D(float degrees){
     float a = convertToRadians(degrees);
-    Matrix4 rotateX(cos(a), sin(a), 0, 0,
+    Matrix4 rotateZ(cos(a), sin(a), 0, 0,
                     -sin(a), cos(a), 0, 0, 
                     0,  0, 1, 0,
                     0, 0, 0, 1);
-    Matrix4 new_matrix = rotateX * (*this);
-    return new_matrix;
+    return rotateZ;
 }
 
-Matrix4 Matrix4::Rotate3D(float degreesX, float degreesY, float degreesZ){
+Matrix4 Rotate3D(float degreesX, float degreesY, float degreesZ){
     Matrix4 new_matrix = RotateX3D(degreesX) * RotateY3D(degreesY) * RotateZ3D(degreesZ);
     return new_matrix;
 }
 
-Matrix4 Matrix4::Rotate3D(float degrees, Vector4 vec){
+Matrix4 Rotate3D(float degrees, Vector4 vec){
     float a = atanf(vec.x / vec.z);
     float b = acosf(vec.y / vec.Magnitude());
     Matrix4 new_matrix = RotateY3D(-a) * RotateX3D(-b) * RotateY3D(degrees) * RotateX3D(b) * RotateY3D(a);

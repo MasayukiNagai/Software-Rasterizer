@@ -41,6 +41,7 @@ struct Vector4{
     float Magnitude();
     Vector4 Normalize();
     float Dot(const Vector4 &other);
+    void print();
 };
 
 #endif

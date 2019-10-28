@@ -24,7 +24,9 @@ class Raster {
         void swapColor(float &x1, float &y1, float &x2, float &y2, Color &color1, Color &color2);
         void DrawTriangle2D_DotProduct(Triangle2D triangle);
         void swapVector2(Vector2 &v1, Vector2 &v2, Vector2 &v3);
-        void DrawTriangle_Barycentric(Triangle2D triangle);
+        void DrawTriangle2D_Barycentric(Triangle2D triangle);
+        void DrawTriangle3D_Barycentric(Triangle3D triangle3D);
+
     
     private:
         int height;
