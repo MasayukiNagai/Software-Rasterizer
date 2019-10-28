@@ -1,6 +1,8 @@
 #ifndef __MATRIX_H
 #define __MATRIX_H
+
 #include "Vector.h"
+#include <iostream>
 
 struct Matrix4{
     float m11, m12, m13, m14;

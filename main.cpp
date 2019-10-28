@@ -50,15 +50,21 @@ int main() {
     // v0.print();
 
     Raster myRaster(100, 100, White);
-    Triangle3D t(Vector4(0, 0, 0, 1), Vector4(40, 0, 0, 1), Vector4(40, 40, 0, 1), Red, Blue, Green);
+    // Triangle3D t(Vector4(0, 0, 0, 1), Vector4(40, 0, 0, 1), Vector4(40, 40, 0, 1), Red, Blue, Green);
     // Matrix4 pMatrix;
     // pMatrix = Translate3D(10, 20, 10);
     // pMatrix = Scale3D(1.5, 2.0, 1.3);
     // pMatrix = RotateZ3D(-45); 
     // t.Transform(pMatrix);
-    myRaster.DrawTriangle3D_Barycentric(t);
-    myRaster.WriteToPPM();
+    // myRaster.DrawTriangle3D_Barycentric(t);
+    // myRaster.WriteToPPM();
 
+    Model teapot = Model();
+    teapot.ReadFromOBJFile("./teapot.obj", Red);
+    Matrix4 m = Translate3D(50, 50, 0) * RotateZ3D(-45.0) * Scale3D(0.5, 0.5, 0.5);
+    teapot.Transform(m);
+    myRaster.DrawModel(teapot);
+    myRaster.WriteToPPM();
     return 0;
 
 }   

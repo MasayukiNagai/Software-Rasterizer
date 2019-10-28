@@ -1,5 +1,5 @@
-OBJ=Color.o Raster.o Vector.o Triangle.o Matrix.o main.o
-DEPS=Color.h Raster.h Vector.h Triangle.h Matrix.h
+OBJ=Color.o Raster.o Vector.o Triangle.o Matrix.o Model.o main.o
+DEPS=Color.h Raster.h Vector.h Triangle.h Matrix.h Model.h
 CC=g++
 CFLAGS=-I.
 LIBS=

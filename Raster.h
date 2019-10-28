@@ -4,6 +4,7 @@
 #include "Color.h"
 #include "Vector.h"
 #include "Triangle.h"
+#include "Model.h"
 #include <iostream>
 
 class Raster {
@@ -26,6 +27,7 @@ class Raster {
         void swapVector2(Vector2 &v1, Vector2 &v2, Vector2 &v3);
         void DrawTriangle2D_Barycentric(Triangle2D triangle);
         void DrawTriangle3D_Barycentric(Triangle3D triangle3D);
+        void DrawModel(Model model);
 
     
     private:

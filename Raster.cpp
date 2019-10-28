@@ -302,3 +302,8 @@ void Raster::DrawTriangle3D_Barycentric(Triangle3D triangle3D){
     }
 }
 
+void Raster::DrawModel(Model model){
+    for(int i = 0; i < model.numTriangles(); i++){
+        DrawTriangle3D_Barycentric(model[i]);
+    }
+}
