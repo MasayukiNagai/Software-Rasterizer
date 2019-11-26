@@ -24,7 +24,7 @@ void Triangle2D::CalculateBarycentricCoordinates(Vector2 P, float &lambda0, floa
     // float area1 = abs(Determinant(this->v0 - this->v2, P - this->v2))/2;
 
     lambda0 = Determinant(this->v1 - this->v2, P - this->v2)/Determinant(this->v1 - this->v2, this->v0 - this->v2);
-    lambda1 = Determinant(P - this->v2, this->v0 - this->v2)/Determinant(this->v1 - this->v2, this->v0 - this->v2);
+    lambda1 = Determinant(P - this->v2, this->v0 -          this->v2)/Determinant(this->v1 - this->v2, this->v0 - this->v2);
     lambda2 = 1.0 - lambda0 - lambda1;
 }
 

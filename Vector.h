@@ -37,6 +37,8 @@ struct Vector4{
 
     Vector4 operator*(float scalar);
     Vector4 operator-(const Vector4 &other);
+    Vector4 operator/(float scalar);
+    Vector4 Cross(const Vector4 &other);
 
     float Magnitude();
     Vector4 Normalize();

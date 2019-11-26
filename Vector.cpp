@@ -81,22 +81,46 @@ Vector4 Vector4::operator*(float scalar){
     new_vector.w = scalar * this->w;
     return new_vector;
 }
+
 Vector4 Vector4::operator-(const Vector4 &other){
     Vector4 new_vector;
-    new_vector.x = this->x + other.x;
-    new_vector.y = this->x + other.y;
-    new_vector.z = this->x + other.z;
-    new_vector.w = this->x + other.w;
+    new_vector.x = this->x - other.x;
+    new_vector.y = this->y - other.y;
+    new_vector.z = this->z - other.z;
+    new_vector.w = this->w - other.w;
+    return new_vector;
+}
+
+Vector4 Vector4::operator/(float scalar){
+    Vector4 new_vector;
+    new_vector.x = this->x / scalar;
+    new_vector.y = this->y / scalar;
+    new_vector.z = this->z / scalar;
+    new_vector.w = this->w / scalar;
+    return new_vector;
+}
+
+Vector4 Vector4::Cross(const Vector4 &other){
+    Vector4 new_vector;
+    new_vector.x = this->y * other.z - this->z * other.y;
+    new_vector.y = this->z * other.x - this->x * other.z;
+    new_vector.z = this->x * other.y - this->y * other.x;
+    new_vector.w = 0;
     return new_vector;
 }
 
 float Vector4::Magnitude(){
-        return sqrt(pow(this->x, 2) + pow(this->y, 2) + pow(this->z, 2) + pow(this->z, 2));
+        return sqrt(pow(this->x, 2) + pow(this->y, 2) + pow(this->z, 2) + pow(this->w, 2));
 }
 
 Vector4 Vector4::Normalize(){
     float magnitude = Magnitude();
-    return *this * magnitude;
+    if(magnitude == 0){
+        return Vector4();
+    }
+    else{
+        return Vector4(x/magnitude, y/magnitude, z/magnitude, w/magnitude);
+    } 
 }
 
 float Vector4::Dot(const Vector4 &other){

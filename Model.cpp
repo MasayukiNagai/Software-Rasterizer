@@ -73,7 +73,7 @@ void Model::ReadFromOBJFile(string filepath, Color pFillColor){
             if(vertex){
                 Vector4 vec = Vector4(x, y, z, 1.0);
                 vertices.push_back(vec);
-                cout << "v " << x << " " << y << " " << z << endl; 
+                // cout << "v " << x << " " << y << " " << z << endl; 
             }
             else if(face){
                 Triangle3D triangle(v0, v1, v2, pFillColor, pFillColor, pFillColor);
@@ -82,6 +82,14 @@ void Model::ReadFromOBJFile(string filepath, Color pFillColor){
             }
         }
         myFile.close();
+    }
+}
+
+void Model::Homogenize(){
+    for(int i = 0; i < triangles.size(); i++){
+        triangles[i].v0 = triangles[i].v0 / triangles[i].v0.w;
+        triangles[i].v1 = triangles[i].v1 / triangles[i].v1.w;
+        triangles[i].v2 = triangles[i].v2 / triangles[i].v2.w;
     }
 }
 

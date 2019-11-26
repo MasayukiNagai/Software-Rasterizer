@@ -20,6 +20,9 @@ class Model{
         Triangle3D operator[](int i);
         void Transform(Matrix4 pMatrix);
         void ReadFromOBJFile(std::string filepath, Color pFillColor);
+        void Homogenize();
 };
+
+
 
 #endif

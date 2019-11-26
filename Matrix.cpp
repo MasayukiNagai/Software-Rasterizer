@@ -111,6 +111,36 @@ float convertToRadians(float degrees){
     return radians;
 }
 
+Matrix4 LookAt(Vector4 eye, Vector4 spot, Vector4 up){
+    Matrix4 translate = Translate3D(-eye.x, -eye.y, -eye.z);
+    Vector4 look = (spot - eye).Normalize();
+    Vector4 right = look.Cross(up).Normalize();
+    up = up.Normalize();
+    Matrix4 camera(
+        right.x, right.y, right.z, 0.0, 
+        up.x, up.y, up.z, 0.0, 
+        -look.x, -look.y, -look.z, 0.0, 
+        0.0, 0.0, 0.0, 1);
+    return camera * translate;
+}
 
+Matrix4 Orthographic(float minX, float maxX, float minY, float maxY, float minZ, float maxZ){
+    Matrix4 translate = Translate3D(-(minX + maxX)/2, -(minY + maxY)/2, -(minZ + maxZ)/2);
+    Matrix4 scale = Scale3D(2/(maxX - minX), 2/(maxY - minY), 2/(maxZ - minZ));
+    return scale * translate;
+}
 
+Matrix4 Perspective(float fovY, float aspect, float nearZ, float farZ){
+    float fovY_rad = convertToRadians(fovY);
+    float F = 1/tan(fovY_rad/2);
+    Matrix4 perspective(
+        F/aspect, 0, 0, 0, 
+        0, F, 0, 0, 0, 
+        0, (farZ + nearZ)/(nearZ - farZ), (2 * nearZ * farZ)/(nearZ - farZ), 
+        0, 0, -1, 0);
+    return perspective;
+}
 
+Matrix4 Viewport(float x, float y, float width, float height){
+    return Translate3D(x, y, 0) * Scale3D(width, height, 1) * Scale3D(0.5, 0.5, 0.5) * Translate3D(1, 1, -1);
+}
