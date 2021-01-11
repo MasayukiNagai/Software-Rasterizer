@@ -15,6 +15,9 @@ class Raster {
         
         int GetWidth();
         int GetHeight();
+        float GetDepthPixel(int x, int y);
+        void SetDepthPixel(int x, int y, float depth);
+        void clear(float pDepth);
         Color GetColorPixel(int x, int y);
         void SetColorPixel(int x, int y, Color pFillColor);
         void clear(Color pFillColor);
@@ -29,11 +32,11 @@ class Raster {
         void DrawTriangle3D_Barycentric(Triangle3D triangle3D);
         void DrawModel(Model model);
 
-    
     private:
         int height;
         int width;
         Color* pixels;
+        float* depthPixels;
 
 };
 

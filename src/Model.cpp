@@ -93,4 +93,13 @@ void Model::Homogenize(){
     }
 }
 
-
+void Model::PerformBackfaceCulling(Vector4 eye, Vector4 spot) {
+  for (int i = 0; i < triangles.size(); i++) {
+    Vector4 a = triangles[i].v2 - triangles[i].v1;
+    Vector4 b = triangles[i].v0 - triangles[i].v1;
+    Vector4 n = a.Cross(b).Normalize();
+    if ((spot - eye).Dot(n) > 0.0) {
+      triangles[i].shouldDraw = false;
+    }
+  }
+}

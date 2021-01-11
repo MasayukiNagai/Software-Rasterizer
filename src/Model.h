@@ -21,6 +21,7 @@ class Model{
         void Transform(Matrix4 pMatrix);
         void ReadFromOBJFile(std::string filepath, Color pFillColor);
         void Homogenize();
+        void PerformBackfaceCulling(Vector4 eye, Vector4 spot);
 };
 
 

@@ -2,30 +2,36 @@
 #include <iostream>
 #include <fstream>
 #include <cmath>
+#include <limits>
 using namespace std;
 
 Raster::Raster()
-  : width(0), height(0), pixels(NULL){  
+  : width(0), height(0), pixels(NULL), depthPixels(NULL){  
 }
 
 Raster::Raster(int pWidth, int pHeight, Color pFillColor)
   : width(pWidth), height(pHeight){
   int size = width * height;
   pixels = new (nothrow) Color[size];
+  depthPixels = new (nothrow) float[size];
   if (pixels == nullptr){
       cout << "Error: the allocation of this block memory failed" << endl;
   }
   else {
     for (int i = 0; i < size; i++){
         pixels[i] = pFillColor;
+        depthPixels[i] = numeric_limits<float>::max();
     }
   }
+  
 
 }
 
 Raster::~Raster(){
     delete [] pixels;
     pixels = NULL;
+    delete[] depthPixels;
+    depthPixels = NULL;
 }
 
 int Raster::GetWidth(){
@@ -34,6 +40,20 @@ int Raster::GetWidth(){
 
 int Raster::GetHeight(){
     return height;
+}
+
+float Raster::GetDepthPixel(int x, int y){
+    return depthPixels[width * (height-y-1) + x];
+}
+
+void Raster::SetDepthPixel(int x, int y, float depth){
+    depthPixels[width * (height-y-1) + x] = depth;
+}
+
+void Raster::clear(float pDepth){
+    for (int i = 0; i < width * height; i++){
+        depthPixels[i] = pDepth;
+    }
 }
 
 Color Raster::GetColorPixel(int x, int y){
@@ -274,6 +294,9 @@ void Raster::DrawTriangle2D_Barycentric(Triangle2D triangle){
 }
 
 void Raster::DrawTriangle3D_Barycentric(Triangle3D triangle3D){
+    if(!triangle3D.shouldDraw){
+        return;
+    }
     Triangle2D triangle(triangle3D);
     int xmin = round(min(triangle.v0.x, min(triangle.v1.x, triangle.v2.x)));
     int xmax = round(max(triangle.v0.x, max(triangle.v1.x, triangle.v2.x)));
@@ -290,13 +313,18 @@ void Raster::DrawTriangle3D_Barycentric(Triangle3D triangle3D){
     float lambda1;
     float lambda2;
     Color fillColor;
+    float depth_value;
     for(int x = xmin; x < xmax; x++){
         for(int y = ymin; y < ymax; y++){
             Vector2 p(x+0.5, y+0.5);
             triangle.CalculateBarycentricCoordinates(p, lambda0, lambda1, lambda2);
-            if(lambda0 >= 0 && lambda1 >= 0 && lambda2 >= 0){
-                fillColor = triangle.c0 * lambda0 + triangle.c1 * lambda1 + triangle.c2 * lambda2;
-                SetColorPixel(x, y, fillColor);
+            if(lambda0 > 0 && lambda1 > 0 && lambda2 > 0){
+                depth_value = triangle3D.v0.z * lambda0 + triangle3D.v1.z * lambda1 + triangle3D.v2.z * lambda2;
+                if (depth_value < GetDepthPixel(x, y)){
+                    fillColor = triangle.c0 * lambda0 + triangle.c1 * lambda1 + triangle.c2 * lambda2;
+                    SetColorPixel(x, y, fillColor);
+                    SetDepthPixel(x, y, depth_value);
+                }
             }
         }
     }

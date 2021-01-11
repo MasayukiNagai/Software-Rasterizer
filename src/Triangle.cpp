@@ -19,25 +19,37 @@ Triangle2D::Triangle2D(Triangle3D const &triangle3D){
 }
 
 void Triangle2D::CalculateBarycentricCoordinates(Vector2 P, float &lambda0, float &lambda1, float &lambda2){
-    // float areaAll = abs(Determinant(this->v1 - this->v0, this->v2 - this->v0))/2;
-    // float area0 = abs(Determinant(this->v1 - this->v2, P - this->v2))/2;
-    // float area1 = abs(Determinant(this->v0 - this->v2, P - this->v2))/2;
+    float area = Determinant(this->v1 - this->v2, this->v0 - this->v2);
+    if(area == 0){
+      lambda0 = 1.0;
+      lambda1 = 0.0;
+      lambda2 = 0.0;
+    }
+    else{
+      lambda0 = Determinant(this->v1 - this->v2, P - this->v2)/area;
+      lambda1 = Determinant(P - this->v2, this->v0 - this->v2)/area;
+      lambda2 = 1.0 - lambda0 - lambda1;
+    }
 
-    lambda0 = Determinant(this->v1 - this->v2, P - this->v2)/Determinant(this->v1 - this->v2, this->v0 - this->v2);
-    lambda1 = Determinant(P - this->v2, this->v0 -          this->v2)/Determinant(this->v1 - this->v2, this->v0 - this->v2);
-    lambda2 = 1.0 - lambda0 - lambda1;
 }
 
 Triangle3D::Triangle3D()
-  :v0(Vector4()), v1(Vector4()), v2(Vector4()), c0(Clear), c1(Clear), c2(Clear){  
+  :v0(Vector4()), v1(Vector4()), v2(Vector4()), c0(Clear), c1(Clear), c2(Clear), shouldDraw(true){  
 }
 
 Triangle3D::Triangle3D(Vector4 pV0, Vector4 pV1, Vector4 pV2, Color pC0, Color pC1, Color pC2)
-  :v0(pV0), v1(pV1), v2(pV2), c0(pC0), c1(pC1), c2(pC2){
+  :v0(pV0), v1(pV1), v2(pV2), c0(pC0), c1(pC1), c2(pC2), shouldDraw(true){
 }  
     
 void Triangle3D::Transform(Matrix4 pM){
-  this->v0 = pM * this->v0;
-  this->v1 = pM * this->v1;
-  this->v2 = pM * this->v2;
+  if(shouldDraw){
+    this->v0 = pM * this->v0;
+    this->v1 = pM * this->v1;
+    this->v2 = pM * this->v2;
+  }
+  // else{
+  //   this->v0 = pM * this->v0;
+  //   this->v1 = pM * this->v1;
+  //   this->v2 = pM * this->v2;
+  // }
 }

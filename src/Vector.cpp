@@ -124,7 +124,7 @@ Vector4 Vector4::Normalize(){
 }
 
 float Vector4::Dot(const Vector4 &other){
-    float product = this->x * other.x + this->y * other.y + this->z * other.z;
+    float product = this->x * other.x + this->y * other.y + this->z * other.z + this->w * other.w;
     return product;
 }
 

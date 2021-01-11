@@ -1,14 +1,20 @@
-OBJ=Color.o Raster.o Vector.o Triangle.o Matrix.o Model.o main.o
-DEPS=Color.h Raster.h Vector.h Triangle.h Matrix.h Model.h
+SRC_DIR=./src
 CC=g++
 CFLAGS=-I.
-LIBS=
+OUT=main
+
+DEPS = $(wildcard $(SRC_DIR)/*.h)
+SRCS = $(wildcard $(SRC_DIR)/*.cpp)
+OBJS = $(patsubst $(SRC_DIR)/%.cpp, $(SRC_DIR)/%.o, $(SRCS))
 
 %.o: %.cpp $(DEPS)
 	$(CC) -c -o $@ $< $(CFLAGS)
 
-main: $(OBJ)
-	$(CC) -o $@ $^ $(CFLAGS) $(LIBS)
+main: $(OBJS)
+	$(CC) -o $@ $^ $(CFLAGS)
 
 clean:
 	rm -f *.o *~
+
+run: $(OUT)
+	./$(OUT)
